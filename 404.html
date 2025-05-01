@@ -1,26 +1,148 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Giorgi Siradze</title>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DY7J6RWHF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <head>
+    <title>Giorgi Siradze</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2DY7J6RWHF"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-  gtag('config', 'G-2DY7J6RWHF');
-</script>
-<style>
-html { 
-  background:  url(https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif) no-repeat center center fixed; 
-  background-size: cover;
-}
-body {
-    height: 100%;
-}  
-</style>
-</head>
-<body>
-</body>
+      gtag('config', 'G-2DY7J6RWHF');
+    </script>
+    <style>
+      html {
+        background: black;
+        background-size: cover;
+      }
+      body {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="matrix-overlay"
+      style="
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      "
+    >
+      <canvas
+        id="matrix-canvas"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 0;
+        "
+      ></canvas>
+      <div
+        style="
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          color: #00ff41;
+          font-family: 'Courier New', Courier, monospace;
+        "
+      >
+        <h1 style="margin-bottom: 2em">
+          The page you're looking for doesn't exist. Choose your pill to enter
+          the Matrix.
+        </h1>
+        <button
+          id="red-pill"
+          style="
+            background: #ff003c;
+            border: none;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+            margin: 0 2em;
+            font-size: 1.2em;
+            color: white;
+            box-shadow: 0 0 20px #ff003c;
+            cursor: pointer;
+          "
+        >
+          Red Pill
+        </button>
+        <button
+          id="blue-pill"
+          style="
+            background: #0099ff;
+            border: none;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+            margin: 0 2em;
+            font-size: 1.2em;
+            color: white;
+            box-shadow: 0 0 20px #0099ff;
+            cursor: pointer;
+          "
+        >
+          Blue Pill
+        </button>
+      </div>
+    </div>
+    <audio id="rickroll-audio" src="rickroll.mp3" loop hidden></audio>
+    <script>
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      function resizeMatrix() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeMatrix();
+      window.addEventListener('resize', resizeMatrix);
+      const letters =
+        'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const fontSize = 18;
+      const columns = [];
+      for (let i = 0; i < window.innerWidth / fontSize; i++) columns[i] = 1;
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0,0,0,0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#0F0';
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < columns.length; i++) {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, i * fontSize, columns[i] * fontSize);
+          if (columns[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            columns[i] = 0;
+          }
+          columns[i]++;
+        }
+      }
+      setInterval(drawMatrix, 50);
+      function enterSite() {
+        document.getElementById('matrix-overlay').style.display = 'none';
+        document.documentElement.style.background =
+          'url(https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif) no-repeat center center fixed';
+        document.documentElement.style.backgroundSize = 'cover';
+        var audio = document.getElementById('rickroll-audio');
+        audio.play();
+      }
+      document.getElementById('red-pill').onclick = enterSite;
+      document.getElementById('blue-pill').onclick = enterSite;
+    </script>
+  </body>
 </html>
