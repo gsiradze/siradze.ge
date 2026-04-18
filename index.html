@@ -1,240 +1,1033 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Giorgi Siradze</title>
-    <meta name="description" content="Giorgi Siradze" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-2DY7J6RWHF"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-2DY7J6RWHF');
-    </script>
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              matrix: {
-                dark: '#0a0e0a',
-                green: '#00FF41',
-                light: '#7FFF00',
-                cyan: '#03A062',
-                red: '#c41e3a',
-                blue: '#0078d7',
-              },
-            },
-            fontFamily: {
-              matrix: ['Courier New', 'Courier', 'monospace'],
-            },
-            animation: {
-              'fade-in': 'fade-in 1s ease-out',
-              float: 'float 6s ease-in-out infinite',
-              'matrix-rain': 'matrix-rain 10s linear infinite',
-            },
-            keyframes: {
-              'matrix-rain': {
-                '0%': { transform: 'translateY(-100%)' },
-                '100%': { transform: 'translateY(1000%)' },
-              },
-              'fade-in': {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      body {
-        background-color: #0a0e0a;
-        color: #00ff41;
-        font-family: 'Courier New', Courier, monospace;
-        margin: 0;
-        overflow: hidden;
-      }
-      .pill-shadow-red {
-        filter: drop-shadow(0 0 10px rgba(196, 30, 58, 0.8));
-      }
-      .pill-shadow-blue {
-        filter: drop-shadow(0 0 10px rgba(0, 120, 215, 0.8));
-      }
-      @keyframes matrix-character-change {
-        0%,
-        100% {
-          content: '0';
-        }
-        10% {
-          content: '1';
-        }
-        20% {
-          content: 'イ';
-        }
-        30% {
-          content: 'ま';
-        }
-        40% {
-          content: 'ン';
-        }
-        50% {
-          content: 'サ';
-        }
-        60% {
-          content: 'リ';
-        }
-        70% {
-          content: 'ス';
-        }
-        80% {
-          content: '∞';
-        }
-        90% {
-          content: '7';
-        }
-      }
-      .matrix-character::before {
-        content: '1';
-        animation: matrix-character-change 5s infinite;
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      id="matrix-entry"
-      class="relative w-full h-screen flex items-center justify-center overflow-hidden"
-    >
-      <!-- Matrix Digital Rain -->
-      <canvas
-        id="matrix-rain"
-        class="absolute top-0 left-0 w-full h-full"
-      ></canvas>
-      <!-- Overlay Gradient -->
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-matrix-dark/70 via-matrix-dark/30 to-matrix-dark/70 z-[1]"
-      ></div>
-      <!-- Content -->
-      <div
-        class="relative z-10 flex flex-col items-center justify-center gap-8 p-4 text-center animate-fade-in"
-      >
-        <h1
-          class="text-4xl md:text-6xl font-bold mb-2 tracking-tighter text-matrix-green"
-        >
-          THE MATRIX OF MISDIRECTION
-        </h1>
-        <p class="text-xl md:text-2xl max-w-2xl mb-6 text-matrix-light">
-          This is your last chance. After this, there is no turning back.
-        </p>
-        <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-          <div class="flex flex-col items-center">
-            <div
-              id="blue-pill"
-              class="relative cursor-pointer transition-all duration-500 transform hover:scale-110 hover:rotate-[-5deg] w-16 h-40 rounded-full flex items-center justify-center bg-matrix-blue pill-shadow-blue"
-            >
-              <div
-                class="absolute w-full h-full rounded-full bg-white/10 backdrop-blur-sm"
-              ></div>
-              <div class="w-14 h-20 rounded-full bg-matrix-blue"></div>
-            </div>
-            <p class="mt-4 text-lg text-matrix-cyan">Blue Pill</p>
-            <p class="text-sm opacity-70 max-w-xs">
-              The story ends, you wake up and believe whatever you want to
-              believe.
-            </p>
-          </div>
-          <div class="my-4 text-xl font-bold">OR</div>
-          <div class="flex flex-col items-center animate-float">
-            <div
-              id="red-pill"
-              class="relative cursor-pointer transition-all duration-500 transform hover:scale-110 hover:rotate-[-5deg] w-16 h-40 rounded-full flex items-center justify-center bg-matrix-red pill-shadow-red"
-            >
-              <div
-                class="absolute w-full h-full rounded-full bg-white/10 backdrop-blur-sm"
-              ></div>
-              <div class="w-14 h-20 rounded-full bg-matrix-red"></div>
-            </div>
-            <p class="mt-4 text-lg text-matrix-red">Red Pill</p>
-            <p class="text-sm opacity-70 max-w-xs">
-              Stay in Wonderland, and I show you how deep the rabbit hole goes.
-            </p>
-          </div>
-        </div>
-      </div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>signal / noise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   signal / noise — an original cinematic rickroll
+   Inspired by the "digital rain + binary choice" archetype.
+   No film dialogue, characters, or branded IP reproduced.
+   ============================================================ */
+
+:root{
+  --bg: #0D0208;
+  --deep: #003B00;
+  --mid: #008F11;
+  --green: #00FF41;
+  --head: #C8FFC8;
+  --red: #FF003C;
+  --blue: #00B7FF;
+  --font-display: 'VT323', 'Courier New', monospace;
+  --font-body: 'Share Tech Mono', ui-monospace, Menlo, monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--green);font-family:var(--font-body);overflow:hidden;-webkit-font-smoothing:antialiased}
+body{
+  min-height:100vh;
+  min-height:100svh;
+  position:relative;
+  cursor:default;
+}
+
+/* Canvas rain — always behind */
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;background:var(--bg)}
+
+/* Vignette */
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.55) 80%,rgba(0,0,0,.95) 100%)}
+
+/* Scanlines */
+.scanlines{position:fixed;inset:0;z-index:3;pointer-events:none;mix-blend-mode:multiply;
+  background:repeating-linear-gradient(to bottom,rgba(18,16,16,0) 0,rgba(0,0,0,.28) 1px,rgba(18,16,16,0) 2px,rgba(18,16,16,0) 3px);
+  animation:scanDrift 8s linear infinite;
+}
+@keyframes scanDrift{from{background-position:0 0}to{background-position:0 100px}}
+
+/* Flicker layer */
+.flicker{position:fixed;inset:0;z-index:4;pointer-events:none;background:rgba(0,255,65,.012);animation:flicker .15s infinite alternate}
+@keyframes flicker{
+  0%{opacity:.85}10%{opacity:1}15%{opacity:.7}20%{opacity:.95}
+  25%{opacity:.98}30%{opacity:.8}45%{opacity:.9}60%{opacity:1}
+  80%{opacity:.98}100%{opacity:.88}
+}
+
+/* Stage */
+.stage{
+  position:relative;z-index:5;
+  height:100vh;height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(16px,4vw,48px);
+  gap:clamp(24px,5vh,56px);
+}
+
+/* HUD */
+.hud{
+  position:fixed;top:0;left:0;right:0;z-index:6;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;font-family:var(--font-display);font-size:18px;
+  color:var(--mid);letter-spacing:.12em;text-transform:uppercase;
+  pointer-events:none;
+}
+.hud .cluster{display:flex;gap:20px;align-items:center}
+.hud .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+.corner{position:fixed;z-index:6;font-family:var(--font-display);font-size:16px;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;pointer-events:none;opacity:.75}
+.corner.br{bottom:0;right:0;text-align:right}
+.corner.bl{bottom:0;left:0}
+
+/* Sound toggle */
+.sound-btn{
+  position:fixed;top:14px;right:20px;z-index:10;
+  width:40px;height:40px;border:1px solid var(--mid);background:rgba(0,20,5,.5);
+  color:var(--green);font-family:var(--font-display);font-size:18px;
+  cursor:pointer;border-radius:2px;
+  display:grid;place-items:center;
+  transition:all .2s;
+}
+.sound-btn:hover{border-color:var(--green);box-shadow:0 0 12px rgba(0,255,65,.4)}
+
+/* Terminal boot log */
+.terminal{
+  font-family:var(--font-body);
+  font-size:clamp(14px,1.6vw,18px);
+  line-height:1.6;
+  color:var(--green);
+  text-shadow:0 0 3px var(--green),0 0 8px rgba(0,255,65,.4);
+  width:min(680px,92vw);
+  min-height:180px;
+  white-space:pre-wrap;
+}
+.terminal .line{display:block;opacity:0}
+.terminal .line.show{opacity:1}
+.terminal .caret{display:inline-block;width:.6ch;height:1.1em;background:var(--green);vertical-align:-2px;margin-left:2px;animation:blink 1s step-end infinite;box-shadow:0 0 6px var(--green)}
+@keyframes blink{50%{opacity:0}}
+.terminal .sys{color:var(--mid)}
+.terminal .ok{color:var(--head);text-shadow:0 0 4px var(--head)}
+
+/* Prose — the monologue */
+.prose{
+  font-family:var(--font-display);
+  font-size:clamp(22px,3.2vw,40px);
+  line-height:1.25;
+  text-align:center;
+  max-width:min(900px,92vw);
+  color:var(--green);
+  text-shadow:0 0 2px var(--green),0 0 6px var(--green),0 0 18px rgba(0,255,65,.55);
+  letter-spacing:.01em;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 900ms cubic-bezier(.19,1,.22,1),transform 900ms cubic-bezier(.19,1,.22,1);
+  text-wrap:balance;
+}
+.prose.show{opacity:1;transform:translateY(0)}
+.prose em{font-style:normal;color:var(--head);text-shadow:0 0 4px var(--head),0 0 12px var(--green)}
+
+/* Pills area */
+.pills-wrap{
+  opacity:0;
+  transform:translateY(20px);
+  pointer-events:none;
+  transition:opacity 1600ms cubic-bezier(.19,1,.22,1),transform 1600ms cubic-bezier(.19,1,.22,1);
+}
+.pills-wrap.show{opacity:1;transform:translateY(0);pointer-events:auto}
+
+.pills{
+  display:flex;gap:clamp(32px,8vw,88px);align-items:center;justify-content:center;
+  perspective:1200px;
+}
+
+.choice{
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:inherit;color:inherit;
+  transition:filter 300ms cubic-bezier(.19,1,.22,1),transform 300ms cubic-bezier(.19,1,.22,1);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.choice:focus{outline:none}
+.choice:focus-visible .pill{outline:3px solid currentColor;outline-offset:6px}
+
+.pill{
+  width:clamp(120px,14vw,168px);
+  height:clamp(48px,5.5vw,64px);
+  border-radius:999px;
+  position:relative;
+  transition:transform 300ms cubic-bezier(.19,1,.22,1),box-shadow 300ms cubic-bezier(.19,1,.22,1),filter 300ms;
+  transform:rotate(-8deg);
+}
+.pill::before{
+  content:"";position:absolute;inset:0;border-radius:999px;
+  background:
+    radial-gradient(ellipse 40% 30% at 30% 25%,rgba(255,255,255,.65),transparent 70%),
+    radial-gradient(ellipse 50% 40% at 70% 80%,rgba(0,0,0,.45),transparent 70%);
+  pointer-events:none;
+}
+
+.choice.red{color:var(--red)}
+.choice.red .pill{
+  background:linear-gradient(145deg,#ff4d4d 0%,#c40022 55%,#6a0012 100%);
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,.45),
+    inset 0 -5px 9px rgba(0,0,0,.5),
+    0 14px 34px rgba(255,0,60,.4),
+    0 22px 48px rgba(0,0,0,.55);
+}
+.choice.blue{color:var(--blue)}
+.choice.blue .pill{
+  background:linear-gradient(145deg,#5ca8ff 0%,#0a4bc4 55%,#002760 100%);
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,.45),
+    inset 0 -5px 9px rgba(0,0,0,.5),
+    0 14px 34px rgba(0,183,255,.4),
+    0 22px 48px rgba(0,0,0,.55);
+}
+
+.choice:hover .pill{transform:rotate(-8deg) scale(1.1) translateY(-6px)}
+.choice:active .pill{transform:rotate(-8deg) scale(1.05) translateY(-2px);transition-duration:90ms}
+
+/* Dim the other when one hovered */
+.pills:hover .choice:not(:hover){filter:brightness(.32) saturate(.4) blur(1.2px);transform:scale(.96)}
+.pills:hover .choice:not(:hover) .label{opacity:.4}
+
+.label{
+  font-family:var(--font-display);
+  font-size:clamp(13px,1.3vw,16px);
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:currentColor;
+  text-shadow:0 0 6px currentColor,0 0 14px currentColor;
+  opacity:.9;
+  transition:opacity .3s;
+}
+.sublabel{
+  font-family:var(--font-body);
+  font-size:clamp(11px,1vw,13px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--mid);
+  text-align:center;
+  max-width:22ch;
+  line-height:1.4;
+  opacity:.75;
+}
+
+.instruction{
+  font-family:var(--font-display);
+  font-size:clamp(14px,1.5vw,18px);
+  color:var(--mid);
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  opacity:0;transition:opacity 600ms ease;
+  text-align:center;
+}
+.instruction.show{opacity:.8;animation:instPulse 2.4s ease-in-out infinite}
+@keyframes instPulse{50%{opacity:.4}}
+
+/* Entry screen — tap to begin */
+.entry{
+  position:fixed;inset:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:32px;
+  background:radial-gradient(ellipse at center,rgba(0,20,5,.4) 0%,var(--bg) 70%);
+  cursor:pointer;
+  transition:opacity 900ms ease;
+}
+.entry.hide{opacity:0;pointer-events:none}
+.entry h1{
+  font-family:var(--font-display);
+  font-size:clamp(42px,7vw,96px);
+  letter-spacing:.08em;
+  color:var(--green);
+  text-shadow:0 0 4px var(--green),0 0 14px var(--green),0 0 32px rgba(0,255,65,.5);
+  text-transform:uppercase;
+  animation:instPulse 2.8s ease-in-out infinite;
+}
+.entry .hint{font-family:var(--font-body);color:var(--mid);letter-spacing:.24em;text-transform:uppercase;font-size:14px}
+.entry .bracket{color:var(--mid);font-family:var(--font-display);font-size:18px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+
+/* Glitch layer */
+.glitch-layer{position:fixed;inset:0;z-index:40;pointer-events:none;mix-blend-mode:screen;opacity:0}
+.glitch-layer.burst{animation:glitchBurst .4s steps(4) 1}
+@keyframes glitchBurst{
+  0%{opacity:0;transform:translate(0,0)}
+  25%{opacity:.9;transform:translate(-6px,3px);background:rgba(255,0,60,.25)}
+  50%{opacity:.8;transform:translate(4px,-2px);background:rgba(0,183,255,.25)}
+  75%{opacity:.9;transform:translate(-3px,4px);background:rgba(0,255,65,.25)}
+  100%{opacity:0;transform:translate(0,0)}
+}
+
+/* CRT collapse */
+.crt-off{animation:tvOff 700ms cubic-bezier(.77,0,.175,1) forwards}
+@keyframes tvOff{
+  0%{transform:scale(1,1);filter:brightness(1)}
+  35%{transform:scale(1.02,.015);filter:brightness(4)}
+  70%{transform:scale(.02,.012);filter:brightness(6)}
+  100%{transform:scale(0,0);filter:brightness(0)}
+}
+.flash{position:fixed;inset:0;z-index:80;background:#fff;opacity:0;pointer-events:none}
+.flash.go{animation:flashGo 380ms ease-out forwards}
+@keyframes flashGo{0%{opacity:0}40%{opacity:1}100%{opacity:1}}
+
+.shake{animation:shk .12s linear infinite}
+@keyframes shk{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-3px,2px)}
+  50%{transform:translate(3px,-1px)}
+  75%{transform:translate(-2px,3px)}
+}
+
+/* Tweaks panel */
+.tweaks{
+  position:fixed;bottom:20px;right:20px;z-index:60;
+  width:280px;
+  background:rgba(8,18,10,.92);
+  border:1px solid var(--mid);
+  font-family:var(--font-body);color:var(--green);
+  padding:14px 16px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 24px rgba(0,255,65,.15),0 12px 40px rgba(0,0,0,.7);
+  display:none;
+}
+.tweaks.show{display:block}
+.tweaks h3{
+  font-family:var(--font-display);font-size:18px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--head);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.tweaks h3 span{color:var(--mid);font-size:14px}
+.tweaks .row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-top:1px dashed rgba(0,143,17,.3)}
+.tweaks label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.tweaks input[type=range]{width:130px;accent-color:var(--green)}
+.tweaks select,.tweaks button{
+  background:rgba(0,20,5,.6);border:1px solid var(--mid);color:var(--green);
+  font-family:var(--font-body);font-size:12px;padding:4px 8px;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.1em;
+}
+.tweaks button:hover,.tweaks select:hover{border-color:var(--green);box-shadow:0 0 8px rgba(0,255,65,.3)}
+.tweaks .value{color:var(--head);font-size:12px;min-width:3ch;text-align:right}
+
+@media (max-width:600px){
+  .pills{gap:28px}
+  .pill{transform:rotate(-6deg)}
+  .hud{font-size:14px;padding:10px 14px}
+  .corner{font-size:12px}
+  .tweaks{width:calc(100vw - 40px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .scanlines,.flicker{display:none}
+}
+
+/* Selection */
+::selection{background:var(--green);color:var(--bg)}
+</style>
+</head>
+<body>
+
+<canvas id="rain" aria-hidden="true"></canvas>
+
+<div class="vignette"></div>
+<div class="scanlines"></div>
+<div class="flicker"></div>
+<div class="glitch-layer" id="glitch"></div>
+<div class="flash" id="flash"></div>
+
+<audio id="rickroll-audio" src="rickroll.mp3" loop hidden></audio>
+
+<!-- HUD -->
+<div class="hud" aria-hidden="true">
+  <div class="cluster"><span class="dot"></span><span id="hud-status">SIGNAL LOCK // 04:17:92</span></div>
+  <div class="cluster"><span id="hud-coord">LAT 41.693 · LON 44.801</span></div>
+</div>
+<div class="corner bl" aria-hidden="true">NODE-07 · PORT 1984 · TRACE INACTIVE</div>
+<div class="corner br" aria-hidden="true" id="corner-br">UPLINK STABLE</div>
+
+<button class="sound-btn" id="soundBtn" aria-label="Toggle sound" aria-pressed="false" title="Toggle sound">♪</button>
+
+<!-- Entry screen -->
+<div class="entry" id="entry">
+  <div class="bracket">— press any key —</div>
+  <h1>begin transmission</h1>
+  <div class="hint">you are invited in</div>
+</div>
+
+<!-- Main stage -->
+<main class="stage" id="stage" aria-label="Binary choice experience">
+  <h1 style="position:absolute;left:-9999px">signal/noise — an interactive piece</h1>
+
+  <div class="terminal" id="terminal" aria-live="off"></div>
+
+  <div class="prose" id="prose" aria-live="off"></div>
+
+  <div class="pills-wrap" id="pillsWrap" role="group" aria-label="Choose a path">
+    <div class="pills">
+      <button class="choice red" id="redChoice" aria-label="Choose the path of raw signal">
+        <div class="pill" aria-hidden="true"></div>
+        <div class="label">signal</div>
+        <div class="sublabel">keep going · see the whole thing</div>
+      </button>
+      <button class="choice blue" id="blueChoice" aria-label="Choose the path of quiet return">
+        <div class="pill" aria-hidden="true"></div>
+        <div class="label">noise</div>
+        <div class="sublabel">close this tab · resume your day</div>
+      </button>
     </div>
-    <audio id="rickroll-audio" src="rickroll.mp3" loop hidden></audio>
-    <script>
-      // Matrix Digital Rain effect
-      const canvas = document.getElementById('matrix-rain');
-      const ctx = canvas.getContext('2d');
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-      const matrix =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%イウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲ';
-      const characters = matrix.split('');
-      const fontSize = 14;
-      let columns = Math.floor(canvas.width / fontSize);
-      let drops = [];
-      function initDrops() {
-        columns = Math.floor(canvas.width / fontSize);
-        drops = [];
-        for (let i = 0; i < columns; i++) {
-          drops[i] = Math.floor((Math.random() * canvas.height) / fontSize);
-        }
-      }
-      initDrops();
-      window.addEventListener('resize', initDrops);
-      function drawMatrixRain() {
-        ctx.fillStyle = 'rgba(10, 14, 10, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#00FF41';
-        ctx.font = `${fontSize}px monospace`;
-        for (let i = 0; i < drops.length; i++) {
-          const text =
-            characters[Math.floor(Math.random() * characters.length)];
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          drops[i]++;
-        }
-      }
-      setInterval(drawMatrixRain, 35);
-      // Rickroll logic after pill click
-      function showRickroll() {
-        // Remove entry overlay
-        document.getElementById('matrix-entry').style.display = 'none';
-        // Set GIF background
-        document.body.style.background =
-          'url(https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif) no-repeat center center fixed';
-        document.body.style.backgroundSize = 'cover';
-        // Play music
-        var audio = document.getElementById('rickroll-audio');
-        audio.play();
-      }
-      document
-        .getElementById('red-pill')
-        .addEventListener('click', showRickroll);
-      document
-        .getElementById('blue-pill')
-        .addEventListener('click', showRickroll);
-    </script>
-  </body>
+    <p class="instruction" id="instruction" style="margin-top:36px">choose</p>
+  </div>
+</main>
+
+<!-- Tweaks panel -->
+<aside class="tweaks" id="tweaks" aria-label="Tweak controls">
+  <h3>tweaks <span>//fx</span></h3>
+  <div class="row">
+    <label for="t-speed">rain speed</label>
+    <input type="range" id="t-speed" min="0.3" max="3" step="0.1">
+    <div class="value" id="v-speed">1.0</div>
+  </div>
+  <div class="row">
+    <label for="t-density">density</label>
+    <input type="range" id="t-density" min="8" max="28" step="1">
+    <div class="value" id="v-density">14</div>
+  </div>
+  <div class="row">
+    <label for="t-glitch">glitch</label>
+    <input type="range" id="t-glitch" min="0" max="1" step="0.05">
+    <div class="value" id="v-glitch">0.6</div>
+  </div>
+  <div class="row">
+    <label for="t-palette">palette</label>
+    <select id="t-palette">
+      <option value="green">phosphor green</option>
+      <option value="amber">amber crt</option>
+      <option value="ice">ice blue</option>
+      <option value="crimson">crimson</option>
+    </select>
+  </div>
+  <div class="row">
+    <label for="t-variant">variant</label>
+    <select id="t-variant">
+      <option value="terminal">cold terminal</option>
+      <option value="oracle">hushed oracle</option>
+      <option value="warning">system warning</option>
+    </select>
+  </div>
+  <div class="row">
+    <label>replay</label>
+    <button id="t-replay">restart scene</button>
+  </div>
+</aside>
+
+<!-- Speaker notes script placeholder (unused here) -->
+
+<script>
+/* ============================================================
+   TWEAK DEFAULTS — persisted via __edit_mode_set_keys
+   ============================================================ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "speed": 1.0,
+  "density": 14,
+  "glitch": 0.6,
+  "palette": "green",
+  "variant": "terminal"
+}/*EDITMODE-END*/;
+
+let tweaks = {...TWEAK_DEFAULTS};
+
+/* ============================================================
+   PALETTES
+   ============================================================ */
+const PALETTES = {
+  green:  {bg:'#0D0208', deep:'#003B00', mid:'#008F11', green:'#00FF41', head:'#C8FFC8'},
+  amber:  {bg:'#0E0800', deep:'#3B2000', mid:'#A56200', green:'#FFB000', head:'#FFE9B0'},
+  ice:    {bg:'#02080E', deep:'#002033', mid:'#0B80B8', green:'#6BE4FF', head:'#E8FAFF'},
+  crimson:{bg:'#100205', deep:'#3B0008', mid:'#A00020', green:'#FF3860', head:'#FFD0D8'}
+};
+function applyPalette(name){
+  const p = PALETTES[name] || PALETTES.green;
+  const r = document.documentElement.style;
+  r.setProperty('--bg',p.bg); r.setProperty('--deep',p.deep);
+  r.setProperty('--mid',p.mid); r.setProperty('--green',p.green);
+  r.setProperty('--head',p.head);
+  rainPalette = p;
+}
+let rainPalette = PALETTES.green;
+
+/* ============================================================
+   DIGITAL RAIN — canvas 2D
+   ============================================================ */
+const canvas = document.getElementById('rain');
+const ctx = canvas.getContext('2d',{alpha:false});
+const HALF_KANA = Array.from({length:0xFF9D-0xFF66+1},(_,i)=>String.fromCharCode(0xFF66+i)).join('');
+const ALPHABET = (HALF_KANA+'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ:・."=*+<>|/#$%&').split('');
+
+let W,H,DPR,FONT,cols,drops,speeds,heads;
+function sizeRain(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = canvas.width  = Math.floor(innerWidth*DPR);
+  H = canvas.height = Math.floor(innerHeight*DPR);
+  canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px';
+  FONT = Math.max(14, Math.floor(tweaks.density * (innerWidth<600?1.6:1.0))) * DPR;
+  cols = Math.ceil(W / FONT);
+  drops  = new Array(cols).fill(0).map(()=>Math.random()*-40);
+  speeds = new Array(cols).fill(0).map(()=>0.4+Math.random()*1.4);
+  heads  = new Array(cols).fill(0).map(()=>({c:ALPHABET[Math.random()*ALPHABET.length|0], t:0}));
+}
+sizeRain();
+
+let rainRunning = true;
+let rainDir = 1; // 1 down, -1 up
+let rainTintRed = 0;
+
+function drawRain(){
+  if(!rainRunning){ requestAnimationFrame(drawRain); return; }
+  // trail fade
+  ctx.fillStyle = rainPalette.bg;
+  ctx.globalAlpha = 0.09;
+  ctx.fillRect(0,0,W,H);
+  ctx.globalAlpha = 1;
+
+  ctx.font = FONT + "px 'Share Tech Mono', monospace";
+  ctx.textBaseline = 'top';
+
+  const speedMul = tweaks.speed;
+
+  for(let i=0;i<cols;i++){
+    const x = i*FONT;
+    const y = drops[i]*FONT;
+    // body
+    if(rainTintRed>0){
+      ctx.fillStyle = `rgba(255,0,60,${rainTintRed})`;
+    } else {
+      ctx.fillStyle = rainPalette.green;
+    }
+    // occasional mutation of existing trail char
+    if(Math.random()<0.04) heads[i].c = ALPHABET[Math.random()*ALPHABET.length|0];
+    ctx.fillText(heads[i].c, x, y);
+
+    // head (brighter)
+    ctx.fillStyle = rainPalette.head;
+    ctx.shadowColor = rainPalette.green;
+    ctx.shadowBlur = 10;
+    const hc = ALPHABET[Math.random()*ALPHABET.length|0];
+    ctx.fillText(hc, x, y + FONT*rainDir);
+    ctx.shadowBlur = 0;
+
+    // step
+    drops[i] += speeds[i]*speedMul*rainDir;
+    if(rainDir===1){
+      if(y > H && Math.random() > 0.975) drops[i] = -Math.random()*20;
+    } else {
+      if(y < -FONT && Math.random() > 0.975) drops[i] = H/FONT + Math.random()*20;
+    }
+  }
+
+  requestAnimationFrame(drawRain);
+}
+drawRain();
+
+let resizeT;
+addEventListener('resize', ()=>{clearTimeout(resizeT); resizeT=setTimeout(sizeRain,180)});
+document.addEventListener('visibilitychange',()=>{rainRunning=!document.hidden});
+
+/* ============================================================
+   AUDIO — Web Audio synthesis
+   ============================================================ */
+let audioEnabled = false, audioCtx=null, masterGain=null, droneNode=null;
+const soundBtn = document.getElementById('soundBtn');
+
+async function enableAudio(){
+  if(audioEnabled) return;
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    masterGain = audioCtx.createGain(); masterGain.gain.value = 0.25; masterGain.connect(audioCtx.destination);
+  }
+  try { await audioCtx.resume(); } catch(e) {}
+  audioEnabled = true;
+  soundBtn.setAttribute('aria-pressed','true');
+  soundBtn.textContent = '♫';
+  startDrone();
+}
+function disableAudio(){
+  if(!audioEnabled) return;
+  audioEnabled = false;
+  soundBtn.setAttribute('aria-pressed','false');
+  soundBtn.textContent = '♪';
+  stopDrone();
+}
+soundBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  if(audioEnabled) disableAudio(); else enableAudio();
+});
+
+// First user gesture anywhere enables audio
+const firstGestureEvents = ['pointerdown','keydown','touchstart'];
+function firstGestureHandler(){
+  firstGestureEvents.forEach(ev => window.removeEventListener(ev, firstGestureHandler, true));
+  enableAudio();
+}
+firstGestureEvents.forEach(ev => window.addEventListener(ev, firstGestureHandler, { capture:true, passive:true }));
+function startDrone(){
+  if(!audioCtx||droneNode) return;
+  const o1 = audioCtx.createOscillator(); o1.type='sine'; o1.frequency.value=55;
+  const o2 = audioCtx.createOscillator(); o2.type='sine'; o2.frequency.value=55.4;
+  const g = audioCtx.createGain(); g.gain.value=0; g.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime+2);
+  const filt = audioCtx.createBiquadFilter(); filt.type='lowpass'; filt.frequency.value=220;
+  o1.connect(g); o2.connect(g); g.connect(filt); filt.connect(masterGain);
+  o1.start(); o2.start();
+  droneNode = {o1,o2,g};
+}
+function stopDrone(){
+  if(!droneNode) return;
+  const t=audioCtx.currentTime;
+  droneNode.g.gain.cancelScheduledValues(t); droneNode.g.gain.linearRampToValueAtTime(0,t+0.5);
+  const d=droneNode; setTimeout(()=>{try{d.o1.stop();d.o2.stop();}catch(e){}},600);
+  droneNode=null;
+}
+function beep(freq=660, dur=0.18, type='sine', gain=0.12){
+  if(!audioEnabled||!audioCtx) return;
+  const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type=type; o.frequency.value=freq;
+  g.gain.value=0; g.gain.linearRampToValueAtTime(gain, audioCtx.currentTime+0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime+dur);
+  o.connect(g); g.connect(masterGain);
+  o.start(); o.stop(audioCtx.currentTime+dur+0.02);
+}
+function typeClick(){ beep(2200+Math.random()*800, 0.018, 'square', 0.04); }
+function sweep(from=800, to=80, dur=.4){
+  if(!audioEnabled||!audioCtx) return;
+  const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type='sawtooth'; o.frequency.setValueAtTime(from,audioCtx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(to, audioCtx.currentTime+dur);
+  g.gain.value=.2; g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime+dur);
+  o.connect(g); g.connect(masterGain);
+  o.start(); o.stop(audioCtx.currentTime+dur+0.02);
+}
+
+/* ============================================================
+   COPY BANKS — original prose, no film dialogue
+   ============================================================ */
+const COPY = {
+  terminal:{
+    boot:[
+      '> initializing cold node...',
+      '> memory check .......... [ OK ]',
+      '> phosphor array ........ [ OK ]',
+      '> signal layer .......... [ LIVE ]',
+      '> awaiting your attention_'
+    ],
+    waking:['> wake cycle started','> you have been sleeping a long time'],
+    prose:[
+      'you opened the tab on purpose.',
+      'somewhere inside the static, a pattern has been trying to reach you.',
+      'the rest of the afternoon is waiting.',
+      'so is <em>the rest of the afternoon</em>.'
+    ]
+  },
+  oracle:{
+    boot:[
+      '> oracle online',
+      '> incense: burning',
+      '> kettle: warm',
+      '> you are right on time'
+    ],
+    waking:['> i was told you would come','> you have already decided'],
+    prose:[
+      'you already know which one you will pick.',
+      'that is fine. the kitchen table knows too.',
+      'there are two doors. <em>one of them is a song.</em>'
+    ]
+  },
+  warning:{
+    boot:[
+      '> !! anomaly detected',
+      '> containment: holding',
+      '> observer: you',
+      '> protocol demands a choice_'
+    ],
+    waking:['> intruder flagged','> please identify your intention'],
+    prose:[
+      'the system will not continue without input.',
+      'one option honors the original rules.',
+      '<em>the other was added later, and never removed.</em>'
+    ]
+  }
+};
+
+/* ============================================================
+   TYPEWRITER
+   ============================================================ */
+const term = document.getElementById('terminal');
+const prose = document.getElementById('prose');
+const pillsWrap = document.getElementById('pillsWrap');
+const instruction = document.getElementById('instruction');
+
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+let sceneAbort = false;
+
+async function typeLine(el, text, perChar=60, jitter=25){
+  const span = document.createElement('span');
+  span.className = 'line show';
+  if(text.startsWith('>')) span.classList.add('sys');
+  el.appendChild(span);
+  const caret = document.createElement('span');
+  caret.className='caret';
+  el.appendChild(caret);
+  for(let i=0;i<text.length;i++){
+    if(sceneAbort) return;
+    span.textContent += text[i];
+    if(text[i]!==' ') typeClick();
+    await sleep(perChar + (Math.random()*2-1)*jitter);
+  }
+  caret.remove();
+  const nl = document.createElement('br');
+  el.appendChild(nl);
+}
+
+async function showProse(html){
+  prose.innerHTML = html;
+  prose.classList.remove('show');
+  await sleep(60);
+  prose.classList.add('show');
+}
+async function hideProse(){
+  prose.classList.remove('show');
+  await sleep(800);
+}
+
+/* ============================================================
+   GLITCH + SHAKE + CRT OFF
+   ============================================================ */
+const glitchLayer = document.getElementById('glitch');
+function glitchBurst(strength=1){
+  if(tweaks.glitch<=0.01) return;
+  glitchLayer.style.opacity = tweaks.glitch*strength;
+  glitchLayer.classList.remove('burst');
+  void glitchLayer.offsetWidth;
+  glitchLayer.classList.add('burst');
+  beep(110+Math.random()*80, 0.06, 'square', 0.06);
+  setTimeout(()=>{glitchLayer.style.opacity=0},400);
+}
+
+const stage = document.getElementById('stage');
+async function shake(ms=500){
+  stage.classList.add('shake');
+  await sleep(ms);
+  stage.classList.remove('shake');
+}
+
+/* ============================================================
+   SCENE
+   ============================================================ */
+const RICKROLL_GIF = 'https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif';
+let sceneDone = false;
+
+async function runScene(){
+  sceneAbort = false; sceneDone=false;
+  term.innerHTML=''; prose.innerHTML=''; prose.classList.remove('show');
+  pillsWrap.classList.remove('show'); instruction.classList.remove('show');
+
+  const bank = COPY[tweaks.variant] || COPY.terminal;
+  const visits = parseInt(localStorage.getItem('sn_visits')||'0',10);
+
+  // boot log
+  for(const line of bank.boot){
+    if(sceneAbort) return;
+    await typeLine(term, line, 28, 10);
+    await sleep(260);
+  }
+  await sleep(500);
+
+  // returning-visitor aside
+  if(visits>=1){
+    await typeLine(term, bank.waking[0] || '> ...you came back.', 55, 20);
+    await sleep(900);
+    if(visits>=2) await typeLine(term, bank.waking[1] || '> i knew you would.', 55, 20);
+    await sleep(600);
+  }
+
+  if(sceneAbort) return;
+
+  // Monologue / prose beats
+  for(let i=0;i<bank.prose.length;i++){
+    if(sceneAbort) return;
+    await showProse(bank.prose[i]);
+    await sleep(i===bank.prose.length-1 ? 2200 : 1800);
+    if(i<bank.prose.length-1) await hideProse();
+  }
+
+  // hard glitch burst, pills arrive
+  if(sceneAbort) return;
+  glitchBurst(1);
+  await sleep(320);
+  await hideProse();
+
+  await showProse('<em>choose.</em>');
+  await sleep(700);
+  prose.classList.remove('show');
+  await sleep(500);
+
+  pillsWrap.classList.add('show');
+  await sleep(900);
+  instruction.classList.add('show');
+
+  // periodic micro-glitches during idle
+  scheduleIdleGlitches();
+  sceneDone = true;
+}
+
+let idleGlitchT=null;
+function scheduleIdleGlitches(){
+  clearTimeout(idleGlitchT);
+  const next = 6000 + Math.random()*8000;
+  idleGlitchT = setTimeout(()=>{glitchBurst(.6); scheduleIdleGlitches();}, next);
+}
+
+/* ============================================================
+   CHOICE — the payoff
+   ============================================================ */
+let redirecting=false;
+async function choose(which){
+  if(redirecting) return;
+  redirecting=true;
+  sceneAbort=true;
+  clearTimeout(idleGlitchT);
+
+  // increment visit count so return jokes work on rerun
+  const v = parseInt(localStorage.getItem('sn_visits')||'0',10);
+  localStorage.setItem('sn_visits', String(v+1));
+
+  sweep(600, 60, 0.5);
+
+  // chosen pill grows, other fades
+  const chosen = which==='red'?document.getElementById('redChoice'):document.getElementById('blueChoice');
+  const other  = which==='red'?document.getElementById('blueChoice'):document.getElementById('redChoice');
+  chosen.style.transition = 'transform 700ms cubic-bezier(.19,1,.22,1), filter 700ms';
+  chosen.style.transform = 'scale(1.3)';
+  chosen.style.filter = 'brightness(1.5) drop-shadow(0 0 24px currentColor)';
+  other.style.transition = 'opacity 500ms, filter 500ms, transform 500ms';
+  other.style.opacity = '0';
+  other.style.filter = 'brightness(0.1) blur(4px)';
+  other.style.transform = 'scale(0.6)';
+
+  instruction.classList.remove('show');
+  prose.innerHTML=''; prose.classList.remove('show');
+
+  await sleep(450);
+
+  if(which==='red'){
+    rainTintRed = 0.9;
+    rainDir = -1;
+  } else {
+    // softer — desaturate
+    canvas.style.transition='filter 900ms';
+    canvas.style.filter='saturate(.2) brightness(1.15)';
+  }
+
+  // escalating glitches
+  for(let i=0;i<5;i++){
+    glitchBurst(1);
+    await sleep(140);
+  }
+
+  await showProse(which==='red'
+    ? '<em>you never actually had a choice.</em>'
+    : '<em>...but you came back anyway.</em>');
+  shake(800);
+  await sleep(1200);
+  await hideProse();
+
+  await showProse(which==='red'
+    ? 'the pattern has been <em>this song</em> all along.'
+    : 'the <em>quiet option</em> was never real.');
+  await sleep(1400);
+
+  // CRT shutdown
+  document.body.classList.add('crt-off');
+  sweep(200, 40, 0.6);
+  await sleep(650);
+
+  // White flash
+  const flash = document.getElementById('flash');
+  flash.classList.add('go');
+  await sleep(320);
+
+  // Reveal: full-screen GIF + rickroll audio
+  stopDrone();
+  rainRunning = false;
+  // Undo CRT collapse + flash so the reveal is visible
+  document.body.classList.remove('crt-off');
+  document.body.style.transform = 'none';
+  document.body.style.filter = 'none';
+  const flashEl = document.getElementById('flash');
+  flashEl.classList.remove('go');
+  flashEl.style.opacity = '0';
+
+  const reveal = document.createElement('div');
+  reveal.style.cssText =
+    "position:fixed;inset:0;z-index:9999;background:#000 url('" + RICKROLL_GIF +
+    "') center center / cover no-repeat;opacity:0;transition:opacity 600ms ease";
+  // Append to <html> so body's transform can't contain it
+  document.documentElement.appendChild(reveal);
+  requestAnimationFrame(() => { reveal.style.opacity = '1'; });
+
+  const rickAudio = document.getElementById('rickroll-audio');
+  rickAudio.muted = false;
+  rickAudio.volume = 1;
+  rickAudio.currentTime = 0;
+
+  const tryPlay = () => rickAudio.play().then(() => true).catch(() => false);
+  const armUnlock = () => {
+    const events = ['pointerdown', 'click', 'keydown', 'touchstart', 'mousemove', 'wheel', 'scroll'];
+    const unlock = async () => {
+      const ok = await tryPlay();
+      if (!ok) return;
+      events.forEach(ev => window.removeEventListener(ev, unlock, true));
+    };
+    events.forEach(ev => window.addEventListener(ev, unlock, { capture: true, passive: true }));
+  };
+
+  const ok = await tryPlay();
+  if (!ok) armUnlock();
+}
+
+function primeRickAudio(){
+  const a = document.getElementById('rickroll-audio');
+  a.muted = true;
+  a.play().catch(()=>{});
+}
+document.getElementById('redChoice').addEventListener('click', ()=>{ primeRickAudio(); choose('red'); });
+document.getElementById('blueChoice').addEventListener('click', ()=>{ primeRickAudio(); choose('blue'); });
+document.getElementById('redChoice').addEventListener('mouseenter',()=>beep(880,.08,'sine',.05));
+document.getElementById('blueChoice').addEventListener('mouseenter',()=>beep(520,.08,'sine',.05));
+
+/* ============================================================
+   ENTRY SCREEN — gate audio + scene behind gesture
+   ============================================================ */
+const entry = document.getElementById('entry');
+let sceneStarted=false;
+function startScene(){
+  if(sceneStarted) return;
+  sceneStarted = true;
+  entry.classList.add('hide');
+  setTimeout(()=>entry.style.display='none',900);
+  runScene();
+}
+entry.addEventListener('click', startScene);
+addEventListener('keydown', e=>{ if(!sceneStarted) startScene(); });
+addEventListener('touchstart', startScene, {passive:true, once:true});
+
+/* ============================================================
+   HUD CYCLING
+   ============================================================ */
+const HUD_MSGS = [
+  'SIGNAL LOCK // UNSTABLE',
+  'TRACE WINDOW OPEN',
+  'YOU ARE OBSERVED',
+  'CARRIER OK',
+  'DEPTH : UNKNOWN'
+];
+const CORNER_MSGS = ['UPLINK STABLE','NEVER / GONNA','01001110 01000101','LINK: TRUTH','TRACE INACTIVE'];
+let hudI=0, cornerI=0;
+setInterval(()=>{
+  document.getElementById('hud-status').textContent = HUD_MSGS[hudI++%HUD_MSGS.length];
+  document.getElementById('corner-br').textContent = CORNER_MSGS[cornerI++%CORNER_MSGS.length];
+}, 2600);
+
+// Title cycling
+const TITLES=['signal / noise','// you are observed','01001110 01000101 01001111','(still here?)'];
+let titleI=0;
+setInterval(()=>{document.title = TITLES[titleI++%TITLES.length]},2400);
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) document.title = '(come back...)';
+});
+
+/* ============================================================
+   TWEAKS — in-design controls
+   ============================================================ */
+const tweaksEl = document.getElementById('tweaks');
+function bindTweak(sliderId, valueId, key, onChange){
+  const s=document.getElementById(sliderId), v=document.getElementById(valueId);
+  s.value = tweaks[key]; v.textContent = Number(tweaks[key]).toFixed(sliderId==='t-density'?0:1);
+  s.addEventListener('input', ()=>{
+    tweaks[key] = parseFloat(s.value);
+    v.textContent = Number(tweaks[key]).toFixed(sliderId==='t-density'?0:1);
+    onChange && onChange();
+    persist({[key]: tweaks[key]});
+  });
+}
+bindTweak('t-speed','v-speed','speed');
+bindTweak('t-density','v-density','density', ()=>sizeRain());
+bindTweak('t-glitch','v-glitch','glitch');
+
+const paletteSel = document.getElementById('t-palette');
+paletteSel.value = tweaks.palette;
+applyPalette(tweaks.palette);
+paletteSel.addEventListener('change', ()=>{
+  tweaks.palette = paletteSel.value;
+  applyPalette(tweaks.palette);
+  persist({palette: tweaks.palette});
+});
+
+const variantSel = document.getElementById('t-variant');
+variantSel.value = tweaks.variant;
+variantSel.addEventListener('change', ()=>{
+  tweaks.variant = variantSel.value;
+  persist({variant: tweaks.variant});
+});
+
+document.getElementById('t-replay').addEventListener('click', ()=>{
+  if(!sceneStarted){ startScene(); return; }
+  // reset visuals and rerun
+  sceneAbort=true;
+  clearTimeout(idleGlitchT);
+  rainTintRed=0; rainDir=1;
+  canvas.style.filter=''; document.body.classList.remove('crt-off');
+  document.getElementById('flash').classList.remove('go');
+  const red=document.getElementById('redChoice'), blue=document.getElementById('blueChoice');
+  for(const el of [red,blue]){ el.style.cssText=''; }
+  redirecting=false;
+  setTimeout(runScene, 200);
+});
+
+function persist(patch){
+  try{ parent.postMessage({type:'__edit_mode_set_keys', edits: patch}, '*'); }catch(e){}
+}
+
+/* ============================================================
+   EDIT MODE / TWEAKS TOOLBAR INTEGRATION
+   ============================================================ */
+window.addEventListener('message', e=>{
+  const d=e.data||{};
+  if(d.type==='__activate_edit_mode'){ tweaksEl.classList.add('show'); }
+  if(d.type==='__deactivate_edit_mode'){ tweaksEl.classList.remove('show'); }
+});
+parent.postMessage({type:'__edit_mode_available'}, '*');
+
+/* ============================================================
+   KONAMI — easter egg: flips rain direction + color
+   ============================================================ */
+const KONAMI=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let kIdx=0;
+addEventListener('keydown', e=>{
+  const k=e.key.toLowerCase().length===1?e.key.toLowerCase():e.key;
+  if(k===KONAMI[kIdx]||e.key===KONAMI[kIdx]) kIdx++; else kIdx=0;
+  if(kIdx===KONAMI.length){
+    kIdx=0;
+    rainDir = rainDir===1?-1:1;
+    rainTintRed = rainTintRed>0 ? 0 : 0.75;
+    glitchBurst(1);
+  }
+});
+
+/* dev-tools nudge */
+console.log('%c// the pattern has been this song all along', 'color:#00FF41;font-family:monospace;font-size:14px;text-shadow:0 0 4px #00FF41');
+</script>
+</body>
 </html>
