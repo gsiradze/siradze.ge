@@ -330,6 +330,18 @@ body{
 /* Selection */
 ::selection{background:var(--green);color:var(--bg)}
 </style>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-2DY7J6RWHF"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-2DY7J6RWHF');
+</script>
 </head>
 <body>
 
@@ -498,7 +510,7 @@ function drawRain(){
   ctx.font = FONT + "px 'Share Tech Mono', monospace";
   ctx.textBaseline = 'top';
 
-  const speedMul = tweaks.speed;
+  const speedMul = tweaks.speed * (rainDir === 1 ? 0.9 : 1);
 
   for(let i=0;i<cols;i++){
     const x = i*FONT;
