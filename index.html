@@ -96,12 +96,12 @@ body{
 /* Terminal boot log */
 .terminal{
   font-family:var(--font-body);
-  font-size:clamp(14px,1.6vw,18px);
-  line-height:1.6;
+  font-size:clamp(11px,1.05vw,14px);
+  line-height:1.55;
   color:var(--green);
   text-shadow:0 0 3px var(--green),0 0 8px rgba(0,255,65,.4);
-  width:min(680px,92vw);
-  min-height:180px;
+  width:min(520px,88vw);
+  min-height:140px;
   white-space:pre-wrap;
 }
 .terminal .line{display:block;opacity:0}
@@ -221,11 +221,13 @@ body{
 .instruction{
   font-family:var(--font-display);
   font-size:clamp(14px,1.5vw,18px);
-  color:var(--mid);
-  letter-spacing:.24em;
+  color:var(--head);
+  letter-spacing:.32em;
   text-transform:uppercase;
   opacity:0;transition:opacity 600ms ease;
   text-align:center;
+  text-shadow:0 0 6px var(--green),0 0 14px rgba(0,255,65,.45);
+  margin-bottom:clamp(20px,3vh,36px);
 }
 .instruction.show{opacity:.8;animation:instPulse 2.4s ease-in-out infinite}
 @keyframes instPulse{50%{opacity:.4}}
@@ -367,6 +369,7 @@ body{
   <div class="prose" id="prose" aria-live="off"></div>
 
   <div class="pills-wrap" id="pillsWrap" role="group" aria-label="Choose a path">
+    <p class="instruction" id="instruction">choose wisely</p>
     <div class="pills">
       <button class="choice red" id="redChoice" aria-label="Choose the path of raw signal">
         <div class="pill" aria-hidden="true"></div>
@@ -379,7 +382,6 @@ body{
         <div class="sublabel">close this tab · resume your day</div>
       </button>
     </div>
-    <p class="instruction" id="instruction" style="margin-top:36px">choose</p>
   </div>
 </main>
 
@@ -542,13 +544,19 @@ document.addEventListener('visibilitychange',()=>{rainRunning=!document.hidden})
 let audioEnabled = false, audioCtx=null, masterGain=null, droneNode=null;
 const soundBtn = document.getElementById('soundBtn');
 
-async function enableAudio(){
+function enableAudio(){
   if(audioEnabled) return;
   if(!audioCtx){
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    masterGain = audioCtx.createGain(); masterGain.gain.value = 0.25; masterGain.connect(audioCtx.destination);
+    try {
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      masterGain = audioCtx.createGain(); masterGain.gain.value = 0.25; masterGain.connect(audioCtx.destination);
+      // iOS silent-buffer unlock — must happen in the user gesture, synchronously
+      const buf = audioCtx.createBuffer(1, 1, 22050);
+      const src = audioCtx.createBufferSource();
+      src.buffer = buf; src.connect(audioCtx.destination); src.start(0);
+    } catch(e) { return; }
   }
-  try { await audioCtx.resume(); } catch(e) {}
+  if(audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
   audioEnabled = true;
   soundBtn.setAttribute('aria-pressed','true');
   soundBtn.textContent = '♫';
@@ -566,11 +574,13 @@ soundBtn.addEventListener('click', (e)=>{
   if(audioEnabled) disableAudio(); else enableAudio();
 });
 
-// First user gesture anywhere enables audio
-const firstGestureEvents = ['pointerdown','keydown','touchstart'];
+// First user gesture anywhere enables audio (covers mobile taps, pen, keyboard)
+const firstGestureEvents = ['pointerdown','pointerup','click','keydown','touchstart','touchend','mousedown'];
 function firstGestureHandler(){
-  firstGestureEvents.forEach(ev => window.removeEventListener(ev, firstGestureHandler, true));
   enableAudio();
+  if(audioEnabled){
+    firstGestureEvents.forEach(ev => window.removeEventListener(ev, firstGestureHandler, true));
+  }
 }
 firstGestureEvents.forEach(ev => window.addEventListener(ev, firstGestureHandler, { capture:true, passive:true }));
 function startDrone(){
@@ -754,27 +764,12 @@ async function runScene(){
 
   if(sceneAbort) return;
 
-  // Monologue / prose beats
-  for(let i=0;i<bank.prose.length;i++){
-    if(sceneAbort) return;
-    await showProse(bank.prose[i]);
-    await sleep(i===bank.prose.length-1 ? 2200 : 1800);
-    if(i<bank.prose.length-1) await hideProse();
-  }
-
-  // hard glitch burst, pills arrive
-  if(sceneAbort) return;
+  // Skip prose — go straight to pills
   glitchBurst(1);
-  await sleep(320);
-  await hideProse();
-
-  await showProse('<em>choose.</em>');
-  await sleep(700);
-  prose.classList.remove('show');
-  await sleep(500);
+  await sleep(280);
 
   pillsWrap.classList.add('show');
-  await sleep(900);
+  await sleep(500);
   instruction.classList.add('show');
 
   // periodic micro-glitches during idle
@@ -861,19 +856,13 @@ async function choose(which){
   // Reveal: full-screen GIF + rickroll audio
   stopDrone();
   rainRunning = false;
-  // Undo CRT collapse + flash so the reveal is visible
-  document.body.classList.remove('crt-off');
-  document.body.style.transform = 'none';
-  document.body.style.filter = 'none';
-  const flashEl = document.getElementById('flash');
-  flashEl.classList.remove('go');
-  flashEl.style.opacity = '0';
 
+  // Append reveal FIRST (on <html>, so body's collapsed transform can't contain it)
+  // Fade in over the white flash — body stays collapsed so the old UI never reappears.
   const reveal = document.createElement('div');
   reveal.style.cssText =
     "position:fixed;inset:0;z-index:9999;background:#000 url('" + RICKROLL_GIF +
-    "') center center / cover no-repeat;opacity:0;transition:opacity 600ms ease";
-  // Append to <html> so body's transform can't contain it
+    "') center center / cover no-repeat;opacity:0;transition:opacity 500ms ease";
   document.documentElement.appendChild(reveal);
   requestAnimationFrame(() => { reveal.style.opacity = '1'; });
 
